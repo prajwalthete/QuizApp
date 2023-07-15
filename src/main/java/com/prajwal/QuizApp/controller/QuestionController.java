@@ -3,6 +3,7 @@ package com.prajwal.QuizApp.controller;
 import com.prajwal.QuizApp.entity.Question;
 import com.prajwal.QuizApp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,36 +16,57 @@ public class QuestionController {
     QuestionService questionService;
 
     @PostMapping("/addQuestion")
-    public Question addQuestion(@RequestBody Question question) {
+    public ResponseEntity<String> addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
     }
 
     @GetMapping("/allQuestions")
-    public List<Question> getAllQuestions() {
+    public ResponseEntity<List<Question>> getAllQuestions() {
         return questionService.getAllQuestions();
 
     }
+   /*
+    @GetMapping("/allQuestions")
+    public List<Question> getAllQuestions() {
+        return questionService.getAllQuestions();
+
+    }*/
 
     @GetMapping("/{id}")
-    public Question getQuestionById(@PathVariable Long id) {
+    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
         return questionService.getQuestionById(id);
     }
 
+   /* @GetMapping("/{id}")
+    public Question getQuestionById(@PathVariable Long id) {
+        return questionService.getQuestionById(id);
+    }*/
+
     @GetMapping("/byCategory/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category) {
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
         return questionService.getQuestionsByCategory(category);
     }
 
     @PutMapping("/{id}")
-    public Question updateQuestion(@PathVariable Long id, @RequestBody Question question) {
+    public ResponseEntity<String> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
         return questionService.updateQuestion(id, question);
     }
 
+    /*@PutMapping("/{id}")
+    public String updateQuestion(@PathVariable Long id, @RequestBody Question question) {
+        return questionService.updateQuestion(id, question).getBody();
+    }
+*/
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable Long id) {
+        return questionService.deleteQuestion(id);
+    }
 
+/*
     @DeleteMapping("/{id}")
     public void deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestion(id);
-    }
+    }*/
 }
 
 
