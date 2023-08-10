@@ -23,7 +23,6 @@ public class QuizController {
             @RequestParam String title) {
 
         return quizService.createQuiz(category, numQ, title);
-
     }
 
     @GetMapping("/get/{id}")
@@ -31,6 +30,7 @@ public class QuizController {
 
         return quizService.getQuizQuestions(id);
     }
+
     @PostMapping("/submit/{id}")
     public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id,@RequestBody List<Response> responses) {
 

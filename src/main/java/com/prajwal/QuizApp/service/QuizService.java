@@ -23,6 +23,7 @@ public class QuizService {
     @Autowired
     QuestionDao questionDao;
 
+
     public ResponseEntity<String> createQuiz(String category, Long numQ, String title) {
 
         List<Question> questions = questionDao.getQuestionsByCategory(category, numQ);
@@ -34,6 +35,7 @@ public class QuizService {
 
         return new ResponseEntity<>("success", HttpStatus.CREATED);
     }
+
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Long id) {
         Optional<Quiz> quiz = quizDao.findById(id);
@@ -49,6 +51,7 @@ public class QuizService {
 
         return new ResponseEntity<>(questionsForUser, HttpStatus.OK);
     }
+
 
     public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
         Quiz quiz = quizDao.findById(Long.valueOf(id)).get();

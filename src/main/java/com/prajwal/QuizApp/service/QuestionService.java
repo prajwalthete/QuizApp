@@ -27,6 +27,7 @@ public class QuestionService {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
 
+
     public ResponseEntity<Question> getQuestionById(Long id) {
         try {
             Question question = questionDao.findById(id).orElse(null);
@@ -42,6 +43,7 @@ public class QuestionService {
    /* public Question getQuestionById(Long id) {
         return questionDao.findById(id).orElse(null);
     }*/
+
 
     public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
 
@@ -97,7 +99,6 @@ public class QuestionService {
             return new ResponseEntity<>("Failed to update the question", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     /*public ResponseEntity<String> updateQuestion(Long id, Question question) {
         Question existingQuestion = questionDao.findById(id).orElse(null);
